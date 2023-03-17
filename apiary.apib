@@ -1,0 +1,233 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Pizza APIS
+
+These APIs are for a pizza restaurant.
+
+## MOCK APIs [/]
+
+### List a pizza detail [GET/menu/{menu_item_id}]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "id": 1,
+              "name": "Margherita",
+              "description": "Classic pizza with tomato sauce, mozzarella, and basil",
+              "price": 12.99,
+              "image_url": "https://pizza-restaurant.com/images/margherita.jpg"
+            }
+        
+### Place a new order [POST/order]
+
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "customer_name": "John Doe",
+              "customer_email": "johndoe@example.com",
+              "items": [
+                {
+                  "pizza_id": 1,
+                  "quantity": 2
+                },
+                {
+                  "pizza_id": 2,
+                  "quantity": 1
+                }
+              ]
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "message": "Order successfull placed."
+            }
+            
+### Cancel the order [DELETE/orders/{order_id}]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "message": "Order 4 has been cancelled."
+            }
+
+### Show User Details [GET/user]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "id": "123",
+              "name": "Jane Doe",
+              "email": "jane.doe@example.com",
+              "phone": "+1-234-567-8901",
+              "addresses": 
+              [
+                {
+                  "id": "1",
+                  "name": "Home",
+                  "address": "456 Main St, Anytown, USA"
+                },
+                {
+                  "id": "2",
+                  "name": "Office",
+                  "address": "789 Business Blvd, Anytown, USA"
+                }
+              ]
+            }
+
+        
+### Add Delivery Address [POST/address]
+
+
++ Request (application/json)
+
+    + Body
+
+            {
+            "id": "3",
+            "name": "Summer House",
+            "address": "123 Beach Rd, Anytown, USA"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "message": "Delievery address saved."
+            }
+
+### Update Delivery Address [PUT/address]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "id": "3",
+              "name": "Summer House",
+              "address": "456 Work St, Anytown, USA"
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "message": "Delievery address updated."
+            }
+
+### Delete Delivery Address [DELETE/address]
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+             "message": "Address deleted successfully."
+            }
+
+### Show Order History [GET/orders]
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+              {
+                "id": "123",
+                "pizzas": [
+                  {
+                    "id": "1",
+                    "name": "Margherita",
+                    "quantity": 2,
+                    "price": 10.99
+                  },
+                  {
+                    "id": "2",
+                    "name": "Pepperoni",
+                    "quantity": 1,
+                    "price": 12.99
+                  }
+                ],
+                "total_price": 34.97,
+                "status": "Delivered"
+              },
+              {
+                "id": "124",
+                "pizzas": [
+                  {
+                    "id": "3",
+                    "name": "Vegetarian",
+                    "quantity": 1,
+                    "price": 13.99
+                  }
+                ],
+                "total_price": 13.99,
+                "status": "Preparing"
+              }
+            ]
+    
+
+### Create Coupon [POST/coupons]
+
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "id": "1",
+              "code": "PIZZA10",
+              "discount_amount": 500
+            }
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "message": "Coupon created."
+            }
+
+### Select Addons [GET/addons]
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {    
+                "id": 1,    
+                "name": "Mozzarella Cheese",    
+                "description": "A soft, mild cheese made from cow's milk",    
+                "price": 1.99  
+                },  
+                {    
+                "id": 2,    
+                "name": "Pepperoni",    
+                "description": "A spicy sausage made from beef and pork",    
+                "price": 2.99  
+                },  
+                {    
+                "id": 3,    
+                "name": "Green Peppers",    
+                "description": "A vegetable with a mild, slightly bitter flavor",    
+                "price": 0.99  
+                }
+            ]
